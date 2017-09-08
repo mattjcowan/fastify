@@ -54,3 +54,8 @@ profile*
 # lock files
 yarn.lock
 package-lock.json
+
+# asp.net files
+[b|B]in
+[o|O]bj
+.vscode
