@@ -5,13 +5,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace aspnet.Controllers
 {
-    [Route("/")]
     public class HelloWorldController : Controller
     {
+      [Route("/")]
       [HttpGet]
       public Task<HelloWorldResponse> Get()
       {
         return Task.FromResult(new HelloWorldResponse());
-      }    
+      } 
+
+      // [Route("/")]
+      // [HttpGet]
+      // public HelloWorldResponse Get()
+      // {
+      //   return new HelloWorldResponse();
+      // } 
+
+      // [Route("/hello")]
+      // [HttpGet]
+      // public Task<HelloWorldResponse> Get(HelloWorldRequest request)
+      // {
+      //   return Task.FromResult(new HelloWorldResponse());
+      // }
+
+      // [Route("/hello")]
+      // [HttpGet]
+      // public HelloWorldResponse Get(HelloWorldRequest request)
+      // {
+      //   return new HelloWorldResponse();
+      // }   
     }
 }

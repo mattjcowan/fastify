@@ -43,19 +43,19 @@ namespace aspnet
 
           // **********************************************************
           // uncomment for aspnet core raw w/ newtonsoft serialization
-          app.Run(async (context) =>
-          {
-              context.Response.ContentType = "application/json";
-              await context.Response.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(new { hello = "world" }));
-          });
-
-          // **********************************************************
-          // uncomment for aspnet core raw w/ servicestack serialization
           // app.Run(async (context) =>
           // {
           //     context.Response.ContentType = "application/json";
-          //     await context.Response.WriteAsync(ServiceStack.Text.JsonSerializer.SerializeToString(new { hello = "world" }));
+          //     await context.Response.WriteAsync(Newtonsoft.Json.JsonConvert.SerializeObject(new { hello = "world" }));
           // });
+
+          // **********************************************************
+          // uncomment for aspnet core raw w/ servicestack serialization
+          app.Run(async (context) =>
+          {
+              context.Response.ContentType = "application/json";
+              await context.Response.WriteAsync(ServiceStack.Text.JsonSerializer.SerializeToString(new { hello = "world" }));
+          });
         }
     }
 
@@ -67,6 +67,11 @@ namespace aspnet
 
         public override void Configure(Container container)
         {
+          SetConfig(new HostConfig {
+              DefaultContentType = MimeTypes.Json,
+              EnableFeatures = Feature.All.Remove(Feature.Html)
+          });
+
           // **********************************************************
           // uncomment for servicestack raw handler implementation
           // this.RawHttpHandlers.Add(req => {
@@ -87,15 +92,26 @@ namespace aspnet
       {
         return Task.FromResult(new HelloWorldResponse());
       }
+
+      // public HelloWorldResponse Get(HelloWorldRequest request)
+      // {
+      //   return new HelloWorldResponse();
+      // }
       
       public Task<HelloWorldResponse> Any(FallbackRequest request)
       {
         return Task.FromResult(new HelloWorldResponse());
       }
+      
+      // public HelloWorldResponse Any(FallbackRequest request)
+      // {
+      //   return new HelloWorldResponse();
+      // }
     }
 
     [ServiceStack.Route("/hello")]
     public class HelloWorldRequest {}
+
     public class HelloWorldResponse
     {
       public string Hello => "World"; 
