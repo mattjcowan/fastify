@@ -1,3 +1,4 @@
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 const restify = require('restify')
 const server = restify.createServer()
 server.get('/', (req, res) => {

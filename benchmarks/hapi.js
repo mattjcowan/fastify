@@ -1,5 +1,6 @@
 'use strict'
 
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 const Hapi = require('hapi')
 
 // Create a server with a host and port

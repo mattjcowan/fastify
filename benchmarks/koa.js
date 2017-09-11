@@ -1,5 +1,6 @@
 'use strict'
 
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 var Koa = require('koa')
 var app = new Koa()
 

@@ -1,4 +1,5 @@
 // Require the framework and instantiate it
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 const fastify = require('../fastify')()
 
 // Declare a route

@@ -1,5 +1,6 @@
 'use strict'
 
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 const express = require('express')
 const app = express()
 

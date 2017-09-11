@@ -1,3 +1,4 @@
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 const five = require('take-five')
 const server = five()
 server.get('/', (req, res) => res.send({ hello: 'world' }))
